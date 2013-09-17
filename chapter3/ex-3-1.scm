@@ -1,0 +1,5 @@
+(define (make-accumulator initial)
+  (let ((sum initial))
+    (lambda (arg)
+      (set! sum (+ sum arg)) 
+       sum)))

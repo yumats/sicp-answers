@@ -1,0 +1,26 @@
+; ex-3.3
+(define (make-account-3-3 balance pw)
+  (define passwd pw)
+  (define (withdraw amount)
+	(if (>= balance amount)
+		(begin (set! balance (- balance amount))
+			   balance)
+		"Insufficient funds"))
+  (define (deposit amount)
+	(set! balance (+ balance amount))
+	balance)
+  (define (password-error arg)
+	"Incorrect password")
+  (define (dispatch pw m)
+	(if (eq? pw passwd)
+		(cond ((eq? m 'withdraw) withdraw)
+			  ((eq? m 'deposit) deposit)
+			  (else (error "Unknown request -- MAKE-ACCOUNT"
+						   m)))
+		password-error))
+  dispatch)
+
+; test
+(define acc (make-account-3-3 100 'secret-password))
+(print ((acc 'secret-password 'withdraw) 40))
+(print ((acc 'some-other-password 'deposit) 50))

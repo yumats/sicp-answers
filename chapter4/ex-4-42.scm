@@ -1,0 +1,18 @@
+;; ex-4-42
+
+(define (liar-puzzle)
+  (let ((betty (amb 1 2 3 4 5))
+        (ethel (amb 1 2 3 4 5))
+        (joan (amb 1 2 3 4 5))
+        (kitty (amb 1 2 3 4 5))
+        (mary (amb 1 2 3 4 5)))
+    (require (or (= kitty 2) (= betty 3)))
+    (require (or (= ethel 1) (= joan 2)))
+    (require (or (= joan 3) (= ethel 5)))
+    (require (or (= kitty 2) (= mary 4)))
+    (require (or (= mary 4) (= betty 1)))
+    (list (list 'Betty betty)
+          (list 'Ethel ethel)
+          (list 'Joan joan)
+          (list 'Kitty kitty)
+          (list 'Mary mary))))
